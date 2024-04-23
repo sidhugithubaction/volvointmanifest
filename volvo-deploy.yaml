@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: volvoapp-deploy
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: volvo-react
+  replicas: 3
+  template:
+    metadata:
+      name: volvoapp-pod
+      labels:
+        app: volvo-react
+    spec:
+      containers:
+      - name: volvoapp-container
+        image: sidhusaiprasanth/volvo-app-docker:devaf171937
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: "200m"
+            memory: 250Mi
+          limits:
+            cpu: "500m"
+            memory: 500Mi
+        readinessProbe:
+          periodSeconds: 1
+          successThreshold: 1
+          failureThreshold: 1
+          tcpSocket:
+            port: 3000
+        imagePullPolicy: IfNotPresent
