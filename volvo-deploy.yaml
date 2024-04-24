@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: volvoapp-container
-        image: sidhusaiprasanth/volvo-app-docker:devaf171937
+        image: sidhusaiprasanth/volvo-app-docker:devf5798450
         ports:
         - containerPort: 3000
         resources:
